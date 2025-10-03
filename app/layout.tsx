@@ -6,7 +6,7 @@ import Footer from "@/components/footer";
 
 const inter = Inter({
   variable: "--font-inter",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 export const metadata: Metadata = {
@@ -23,5 +23,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Footer />
       </body>
     </html>
-  );
+  )
 }
