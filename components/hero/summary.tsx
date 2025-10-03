@@ -13,8 +13,9 @@ export default function Summary() {
           courses: ["First Aid", "First Aid"]
         },
     ]
+
     return (
-        <div className="flex flex-col w-full items-center mt-10 bg-white z-20">
+        <div className="flex flex-col w-full items-center mt-10 z-20">
             <div className="flex flex-col items-center gap-1">
                 <h1 className="text-3xl font-semibold">About Empowering The Nation</h1>
                 <p className="text-[var(--description)]">We make courses for (insert customers here)</p>
