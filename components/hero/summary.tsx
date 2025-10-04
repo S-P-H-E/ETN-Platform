@@ -21,7 +21,7 @@ export default function Summary() {
                 <p className="text-[var(--description)] w-xl text-center">We create transformative courses for aspiring gardeners, entrepreneurs, and professionals looking to grow their skills and careers.</p>
             </div>
 
-            <div className="flex gap-2 justify-center mt-10">
+            <div className="flex gap-2 justify-center mt-10 ">
                 {categories.map(c => (
                     <div key={c.id} className="w-lg p-10 rounded-xl">
                         <h1 className="text-xl font-semibold">{c.name}</h1>
