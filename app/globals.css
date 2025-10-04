@@ -3,10 +3,17 @@
 :root {
   --foreground: #000;
   --background: #fff;
+  --secondary: #0e1012;
   --description: #a5a5a5;
+  --border: #ffffff35;
 }
 
 body {
   background-color: var(--foreground);
   color: var(--background);
+}
+
+.bg-blur {
+  backdrop-filter: blur(20px);
+  background-color: #38383823;
 }

@@ -12,7 +12,7 @@ type Card = {
 export default function Card({ data }: Card) {
     return (
         <>
-            <div className="bg-[var(--foreground)] w-full h-dvh relative">
+            <div className="bg-[var(--foreground)] w-full h-[80dvh] relative">
                 <div className="absolute p-20 text-[var(--background)] flex flex-col justify-end gap-6 size-full z-10">
                     <h1 className="text-5xl font-semibold">{data.name}</h1>
                     <p className="text-xl w-3xl">{data.description}</p>

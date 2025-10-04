@@ -3,6 +3,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import Links from "./links";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 export default function Navbar() {
     return (
@@ -11,12 +12,12 @@ export default function Navbar() {
                 <Image src="/logo-full.svg" alt="Logo" width={160} height={0}/>
             </Link>
 
-            <Links />
+            {/* <Links /> */}
 
             <div className="flex justify-end gap-2 w-1/2">
-                <button className="bg-[var(--background)] text-[var(--foreground)] flex items-center gap-2 px-6 py-2 rounded-full cursor-pointer">
-                    <h1>Cart</h1>
-                    <FaCartShopping />
+                <button className="bg-blur border border-[var(--border)] flex items-center gap-2 px-6 py-2 rounded-full cursor-pointer">
+                    <h1>Explore Courses</h1>
+                    <IoIosArrowRoundForward />
                 </button>
             </div>
         </div>

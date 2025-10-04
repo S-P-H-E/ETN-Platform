@@ -15,10 +15,10 @@ export default function Summary() {
     ]
 
     return (
-        <div className="flex flex-col w-full items-center mt-10 z-20">
+        <div className="flex flex-col w-full items-center mt-20 z-20">
             <div className="flex flex-col items-center gap-1">
-                <h1 className="text-3xl font-semibold">About Empowering The Nation</h1>
-                <p className="text-[var(--description)]">We make courses for (insert customers here)</p>
+                <h1 className="text-5xl font-semibold">About Empowering The Nation</h1>
+                <p className="text-[var(--description)] w-xl text-center">We create transformative courses for aspiring gardeners, entrepreneurs, and professionals looking to grow their skills and careers.</p>
             </div>
 
             <div className="flex gap-2 justify-center mt-10">
