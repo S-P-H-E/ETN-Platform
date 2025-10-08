@@ -6,20 +6,24 @@ import { IoIosArrowRoundForward, IoMdFlower } from "react-icons/io";
 import clsx from 'clsx'
 import { RiFlowerFill } from "react-icons/ri";
 import { FaHandshakeSimple, FaSuitcase } from "react-icons/fa6";
+import { prisma } from "@/lib/prisma";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar/nav";
+import Link from "next/link";
 
 export default async function Home() {
-  // const data = await prisma.courses.findFirst({
-  //     where: {
-  //       featured: true
-  //     }
-  // })
+  const data = await prisma.courses.findFirst({
+      where: {
+        featured: true
+      }
+  })
 
   // TODO: Switch to Prisma fetching
-  const data = {
-    name: "Garden Course",
-    description: "Learn the essentials of gardening — from soil preparation and planting to watering, pruning, and harvesting. This course will give you the skills to grow healthy plants, create a thriving garden, and enjoy the beauty of nature at home.",
-    coverImage: "https://images.unsplash.com/photo-1618935810018-dd4adbb64b78?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  }
+  // const data = {
+  //   name: "Garden Course",
+  //   description: "Learn the essentials of gardening — from soil preparation and planting to watering, pruning, and harvesting. This course will give you the skills to grow healthy plants, create a thriving garden, and enjoy the beauty of nature at home.",
+  //   coverImage: "https://images.unsplash.com/photo-1618935810018-dd4adbb64b78?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  // }
 
   const stats = [
     {
@@ -41,7 +45,10 @@ export default async function Home() {
 
   return (
     <>
+      <Navbar />
+      
       <ReactLenis root />
+
       {data && <Card data={data}/>}
       {/* Stats */}
       <div className="p-10 flex gap-20 w-fit mx-auto">
@@ -59,19 +66,21 @@ export default async function Home() {
       <Summary />
 
       {/* Certificate */}
-      <div className="px-20">
+      <div className="px-10">
         <div className="bg-[var(--secondary)] rounded-4xl w-full flex justify-between">
           <div className="space-y-10 p-25">
             <h1 className="text-6xl w-[700px] font-semibold">You'll get a certificate about successful graduation</h1>
-            <button className="bg-blur border border-[var(--border)] flex items-center gap-2 px-6 py-2 rounded-full cursor-pointer">
+            <Link href="/long" className="bg-blur border border-[var(--border)] flex items-center gap-2 px-6 py-2 rounded-full cursor-pointer">
                 <h1>Explore Courses</h1>
                 <IoIosArrowRoundForward />
-            </button>
+            </Link>
           </div>
 
           <img className="rounded-br-4xl" width={500} height={0} src="https://framerusercontent.com/images/Ticrdm8kssmLg8TBt6NSCFwKk.png?scale-down-to=2048" alt="" />
         </div>
       </div>
+
+      <Footer />
     </>
   )
 }

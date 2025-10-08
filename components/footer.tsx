@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer() {
     return (
         <div className="flex gap-10 items-center p-10 h-[350px]">
-            <div className="p-10 bg-[rgb(14,16,18)] w-1/2 rounded-2xl h-full">
+            <div className="p-10 bg-[var(--secondary)] w-1/2 rounded-2xl h-full">
                 <div className="flex items-center gap-2 mb-3">
                     <Image src="/logo.svg" alt="Logo" width={50} height={0}/>
                     <h1 className="text-3xl font-semibold">Empowering The Nation</h1>
@@ -13,7 +13,7 @@ export default function Footer() {
                 <p className="text-[var(--description)] w-xl text-sm">Being fully bootstrapped, we're not driven by money or interested in becoming a mystical unicorn. We happily cut through the noise and teach gardeners and entrepreneurs personally, taking a 100% learn-by-doing approach with a zero Powerpoint policy.</p>
             </div>
 
-            <div className="p-10 bg-[rgb(14,16,18)] rounded-2xl w-1/2 h-full">
+            <div className="p-10 bg-[var(--secondary)] rounded-2xl w-1/2 h-full">
                 <h1 className="text-3xl font-semibold mb-3">Socials</h1>
                 <div className="flex flex-col gap-3">
                     <Link href="/" className="text-[var(--description)] hover:text-[var(--background)] transition-colors">

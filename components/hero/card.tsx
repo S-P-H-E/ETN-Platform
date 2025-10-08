@@ -1,8 +1,9 @@
 "use client"
-import Navbar from "../navbar/nav";
+import { addItemToCart } from "@/lib/cart";
 
 type Card = {
     data: {
+        id: string,
         name: string,
         description: string,
         coverImage: string
@@ -10,6 +11,12 @@ type Card = {
 }
 
 export default function Card({ data }: Card) {
+    const item = {
+        id: 1,
+        quantity: 1,
+        name: data.name
+    }
+
     return (
         <>
             <div className="bg-[var(--foreground)] w-full h-[80dvh] relative">
@@ -18,7 +25,7 @@ export default function Card({ data }: Card) {
                     <p className="text-xl w-3xl">{data.description}</p>
                     <div className="space-x-2">
                         <button className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-6 py-2 rounded-full font-semibold">Buy Now</button>
-                        <button className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-6 py-2 rounded-full font-semibold">Add to Cart</button>
+                        <button onClick={() => addItemToCart(item)} className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-6 py-2 rounded-full font-semibold">Add to Cart</button>
                     </div>
                 </div>
                 <div className="absolute bg-gradient-to-t from-black to-transparent size-full"/>

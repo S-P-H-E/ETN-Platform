@@ -3,7 +3,8 @@
 :root {
   --foreground: #000;
   --background: #fff;
-  --secondary: #0e1012;
+  /* --secondary: #0e1012; */
+  --secondary: #000;
   --description: #a5a5a5;
   --border: #ffffff35;
 }
