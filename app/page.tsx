@@ -111,15 +111,15 @@ export default async function Home() {
 
       {data && <Card data={data}/>}
       {/* Stats */}
-      <div className="p-10 flex gap-20 w-fit mx-auto">
+      <div className="p-4 md:p-10 flex flex-col md:flex-row gap-8 md:gap-20 w-fit mx-auto">
         {stats.map((s, i) => (
-          <div key={i} className="flex items-center gap-20">
+          <div key={i} className="flex flex-col md:flex-row items-center gap-4 md:gap-20">
             <div className="flex flex-col items-center justify-center">
               {s.icon}
-              <h1 className="text-6xl font-semibold">{s.number}</h1>
-              <p>{s.description}</p>
+              <h1 className="text-3xl md:text-6xl font-semibold">{s.number}</h1>
+              <p className="text-sm md:text-base text-center">{s.description}</p>
             </div>
-            <div className={clsx(i === stats.length-1 ? "hidden" : "h-20 w-0.5 bg-[var(--border)]")}/>
+            <div className={clsx(i === stats.length-1 ? "hidden" : "hidden md:block h-20 w-0.5 bg-[var(--border)]")}/>
           </div>
         ))}
       </div>
@@ -127,19 +127,19 @@ export default async function Home() {
 
       {/* Short Courses Section */}
       {displayShortCourses.length > 0 && (
-        <div className="px-10 py-20">
+        <div className="px-4 md:px-10 py-10 md:py-20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">Short Courses</h2>
-              <p className="text-[var(--description)] text-lg">Quick learning opportunities to boost your skills</p>
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl md:text-4xl font-bold mb-2 md:mb-4">Short Courses</h2>
+              <p className="text-[var(--description)] text-base md:text-lg">Quick learning opportunities to boost your skills</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
               {displayShortCourses.map((course) => (
                 <CourseCard key={course.id} data={course} />
               ))}
             </div>
-            <div className="text-center mt-8">
-              <Link href="/short" className="inline-flex items-center gap-2 bg-[var(--foreground)] text-[var(--background)] px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform">
+            <div className="text-center mt-6 md:mt-8">
+              <Link href="/short" className="inline-flex items-center gap-2 bg-[var(--foreground)] text-[var(--background)] px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:scale-105 transition-transform text-sm md:text-base">
                 View All Short Courses
                 <IoIosArrowRoundForward />
               </Link>
@@ -150,19 +150,19 @@ export default async function Home() {
 
       {/* Long Courses Section */}
       {displayLongCourses.length > 0 && (
-        <div className="px-10 py-20 bg-[var(--secondary)]">
+        <div className="px-4 md:px-10 py-10 md:py-20 bg-[var(--secondary)]">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">Long Courses</h2>
-              <p className="text-[var(--description)] text-lg">Comprehensive programs for deep learning and career advancement</p>
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl md:text-4xl font-bold mb-2 md:mb-4">Long Courses</h2>
+              <p className="text-[var(--description)] text-base md:text-lg">Comprehensive programs for deep learning and career advancement</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
               {displayLongCourses.map((course) => (
                 <CourseCard key={course.id} data={course} />
               ))}
             </div>
-            <div className="text-center mt-8">
-              <Link href="/long" className="inline-flex items-center gap-2 bg-[var(--foreground)] text-[var(--background)] px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform">
+            <div className="text-center mt-6 md:mt-8">
+              <Link href="/long" className="inline-flex items-center gap-2 bg-[var(--foreground)] text-[var(--background)] px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:scale-105 transition-transform text-sm md:text-base">
                 View All Long Courses
                 <IoIosArrowRoundForward />
               </Link>
@@ -172,10 +172,10 @@ export default async function Home() {
       )}
 
       {/* Certificate */}
-      <div className="px-10">
-        <div className="bg-[var(--secondary)] rounded-4xl w-full flex flex-col justify-center items-center space-y-10 p-25">
-          <h1 className="text-6xl text-center w-[800px] font-semibold">You'll get a certificate about successful graduation</h1>
-          <Link href="/long" className="bg-blur border border-[var(--border)] flex items-center gap-2 px-6 py-2 rounded-full cursor-pointer w-fit">
+      <div className="px-4 md:px-10">
+        <div className="bg-[var(--secondary)] rounded-4xl w-full flex flex-col justify-center items-center space-y-6 md:space-y-10 p-8 md:p-25">
+          <h1 className="text-2xl md:text-6xl text-center max-w-[800px] font-semibold leading-tight">You'll get a certificate about successful graduation</h1>
+          <Link href="/long" className="bg-blur border border-[var(--border)] flex items-center gap-2 px-4 md:px-6 py-2 rounded-full cursor-pointer w-fit text-sm md:text-base">
               <h1>Explore Courses</h1>
               <IoIosArrowRoundForward />
           </Link>

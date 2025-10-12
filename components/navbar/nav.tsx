@@ -11,22 +11,17 @@ export default function Navbar() {
     // removeItemFromCart(1)
 
     return (
-        <div id="nav" className="px-20 pt-10 flex items-center justify-between absolute w-full z-20">
-            <Link href="/" className="w-1/2">
-                <Image src="/logo-full.svg" alt="Logo" width={160} height={0}/>
+        <div id="nav" className="px-4 md:px-20 pt-4 md:pt-10 flex items-center justify-between absolute w-full z-20">
+            <Link href="/" className="flex-shrink-0">
+                <Image src="/logo-full.svg" alt="Logo" width={120} height={0} className="md:w-40"/>
             </Link>
 
-            {/* <Links /> */}
-            <div className="flex gap-4 w-1/2">
-
-                
-            </div>
-
-            <div className="flex items-center justify-end gap-2 w-1/2 h-full">
+            <div className="flex items-center justify-end gap-2 md:gap-4">
                 <Cart />
-                <Link href="/long" className="bg-blur border border-[var(--border)] flex items-center gap-2 px-6 py-2 rounded-full cursor-pointer">
-                    <h1>Explore Courses</h1>
-                    <IoIosArrowRoundForward />
+                <Link href="/long" className="bg-blur border border-[var(--border)] flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 rounded-full cursor-pointer text-sm md:text-base">
+                    <span className="hidden md:inline">Explore Courses</span>
+                    <span className="md:hidden">Courses</span>
+                    <IoIosArrowRoundForward className="text-sm md:text-base" />
                 </Link>
             </div>
         </div>

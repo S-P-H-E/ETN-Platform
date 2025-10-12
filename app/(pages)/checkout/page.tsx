@@ -146,12 +146,12 @@ function CheckoutContent() {
   }
 
   return (
-    <div className="min-h-screen bg-black pt-32 pb-12">
-      <div className="max-w-6xl mx-auto px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div className="min-h-screen bg-black pt-20 md:pt-32 pb-8 md:pb-12">
+      <div className="max-w-6xl mx-auto px-4 md:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12">
           {/* Order Summary */}
-          <div className="bg-[var(--foreground)] rounded-lg border border-[var(--border)] p-8">
-            <h2 className="text-2xl font-semibold mb-6 text-[var(--background)]">Order Summary</h2>
+          <div className="bg-[var(--foreground)] rounded-lg border border-[var(--border)] p-4 md:p-8">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-[var(--background)]">Order Summary</h2>
             
             <div className="space-y-4 mb-8">
               {courses.map((course) => (
@@ -202,8 +202,8 @@ function CheckoutContent() {
           </div>
 
           {/* Checkout Form */}
-          <div className="bg-[var(--foreground)] rounded-lg border border-[var(--border)] p-8">
-            <h2 className="text-2xl font-semibold mb-6 text-[var(--background)]">Payment Information</h2>
+          <div className="bg-[var(--foreground)] rounded-lg border border-[var(--border)] p-4 md:p-8">
+            <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-[var(--background)]">Payment Information</h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Email */}

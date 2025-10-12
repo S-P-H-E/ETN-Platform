@@ -18,12 +18,12 @@ export default async function ShortCoursePage({ params }: { params: Promise<{ co
         <>
             {/* Hero Section */}
             <div className="bg-[var(--foreground)] w-full h-[80dvh] relative">
-                <div className="absolute p-20 text-[var(--background)] flex flex-col justify-end gap-6 size-full z-10">
+                <div className="absolute p-4 md:p-20 text-[var(--background)] flex flex-col justify-end gap-4 md:gap-6 size-full z-10">
                     <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
-                            <h1 className="text-5xl font-semibold">{course.name}</h1>
-                            <p className="text-xl w-3xl mt-4">{course.description}</p>
-                            <p className="text-lg mt-2 opacity-80">{course.type === 'long' ? '6 months' : '6 weeks'}</p>
+                            <h1 className="text-2xl md:text-5xl font-semibold leading-tight">{course.name}</h1>
+                            <p className="text-sm md:text-xl max-w-3xl mt-2 md:mt-4">{course.description}</p>
+                            <p className="text-sm md:text-lg mt-2 opacity-80">{course.type === 'long' ? '6 months' : '6 weeks'}</p>
                         </div>
                     </div>
                     <CourseActions courseId={course.id} courseName={course.name} coursePrice={course.price} />
@@ -34,15 +34,15 @@ export default async function ShortCoursePage({ params }: { params: Promise<{ co
             </div>
 
             {/* Content Sections */}
-            <div className="px-10 py-20">
+            <div className="px-4 md:px-10 py-10 md:py-20">
                 <div className="max-w-4xl mx-auto">
                     <article className="prose prose-lg max-w-none">
-                        <h2 className="text-3xl font-semibold mb-6">What you'll learn</h2>
+                        <h2 className="text-xl md:text-3xl font-semibold mb-4 md:mb-6">What you'll learn</h2>
                         <p className="text-[var(--description)] mb-8 leading-relaxed">
                             This focused {course.type === 'long' ? '6-month' : '6-week'} program will teach you essential core concepts and terminology that you can apply immediately. You'll learn practical, real-world use cases and master safety and best practices that are crucial for success. Our quick implementation strategies ensure you can start using your new skills right away.
                         </p>
                         
-                        <h3 className="text-2xl font-semibold mb-4">Key Learning Outcomes</h3>
+                        <h3 className="text-lg md:text-2xl font-semibold mb-3 md:mb-4">Key Learning Outcomes</h3>
                         <ul className="text-[var(--description)] mb-8 space-y-2">
                             <li>• Master core concepts and essential terminology</li>
                             <li>• Apply practical, real-world use cases immediately</li>
