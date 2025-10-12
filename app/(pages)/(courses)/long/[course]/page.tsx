@@ -15,8 +15,9 @@ const dataById: Record<string, Course> = {
     "104": { id: "104", name: "Early Childhood Development", description: "Child-centered pedagogy and classroom practice.", duration: "14 weeks" },
 }
 
-export default function LongCoursePage({ params }: { params: { course: string } }) {
-    const course = dataById[params.course]
+export default async function LongCoursePage({ params }: { params: { course: string } }) {
+    const resolvedParams = await params
+    const course = dataById[resolvedParams.course]
     if (!course) return notFound()
 
     return (

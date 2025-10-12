@@ -42,7 +42,7 @@ export default function Cart() {
                     <div className="flex justify-between items-center mb-4">
                         <h1 className="text-xl font-semibold">Shopping Cart</h1>
                         <button 
-                            className="cursor-pointer p-1 hover:bg-[var(--secondary)] rounded-full transition-colors" 
+                            className="cursor-pointer p-1 transition-colors" 
                             onClick={() => setDrop(false)}
                         >
                             <IoClose className="text-lg" />

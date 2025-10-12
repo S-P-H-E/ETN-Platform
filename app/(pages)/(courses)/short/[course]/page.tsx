@@ -58,13 +58,3 @@ export default function ShortCoursePage({ params }: { params: { course: string }
         </div>
     )
 }
-
-export default async function LongId({ params }: {params: Promise<{ course: string }>}) {
-    const { course } = await params
-
-    return (
-        <div>
-            <h1>ID: {course}</h1>
-        </div>
-    )
-}

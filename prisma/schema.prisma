@@ -8,11 +8,18 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum courseType {
+  short
+  long
+}
+
 model courses {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
+  id          String     @id @default(uuid())
+  createdAt   DateTime   @default(now())
   name        String
   description String
   coverImage  String
-  featured    Boolean  @default(false)
+  price       Int
+  type        courseType
+  featured    Boolean    @default(false)
 }
