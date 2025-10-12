@@ -13,9 +13,10 @@ type Card = {
 
 export default function Card({ data }: Card) {
     const item = {
-        id: 1,
+        id: data.id,
         quantity: 1,
-        name: data.name
+        name: data.name,
+        price: data.price
     }
 
     return (
@@ -25,7 +26,7 @@ export default function Card({ data }: Card) {
                     <h1 className="text-5xl font-semibold">{data.name}</h1>
                     <p className="text-xl w-3xl">{data.description}</p>
                     <div className="space-x-2">
-                        <button className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-6 py-2 rounded-full font-semibold">Buy Now</button>
+                        <a href={`/checkout?items=${data.id}`} className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-6 py-2 rounded-full font-semibold inline-block">Buy Now</a>
                         <button onClick={() => addItemToCart(item)} className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-6 py-2 rounded-full font-semibold">Add to Cart</button>
                     </div>
                 </div>

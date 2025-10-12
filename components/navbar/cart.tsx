@@ -5,6 +5,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa6";
 import clsx from "clsx";
+import Link from "next/link";
 
 export default function Cart() {
     const [drop, setDrop] = useState(false)
@@ -15,12 +16,12 @@ export default function Cart() {
         setMounted(true)
     }, [])
 
-    const handleQuantityChange = (itemId: number, currentQuantity: number, change: number) => {
+    const handleQuantityChange = (itemId: string, currentQuantity: number, change: number) => {
         const newQuantity = Math.min(10, Math.max(1, currentQuantity + change))
         updateItemQuantity(itemId, newQuantity)
     }
 
-    const handleRemoveItem = (itemId: number) => {
+    const handleRemoveItem = (itemId: string) => {
         removeItemFromCart(itemId)
     }
 
@@ -101,11 +102,19 @@ export default function Cart() {
                             
                             {/* Cart Summary */}
                             <div className="border-t border-[var(--border)] pt-3 mt-4">
-                                <div className="flex justify-between items-center">
+                                <div className="flex justify-between items-center mb-3">
                                     <span className="font-semibold text-white">
                                         Total Items: {cartItems.reduce((total, item) => total + item.quantity, 0)}
                                     </span>
                                 </div>
+                                {cartItems.length > 0 && (
+                                    <Link 
+                                        href={`/checkout?items=${cartItems.map(item => item.id).join(',')}`}
+                                        className="w-full bg-[var(--background)] text-[var(--foreground)] py-2 rounded-xl font-semibold text-center block hover:bg-gray-100 transition-colors"
+                                    >
+                                        Checkout
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     ) : (

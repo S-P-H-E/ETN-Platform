@@ -8,8 +8,6 @@ import clsx from 'clsx'
 import { RiFlowerFill } from "react-icons/ri";
 import { FaHandshakeSimple, FaSuitcase } from "react-icons/fa6";
 import { prisma } from "@/lib/prisma";
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar/nav";
 import Link from "next/link";
 
 export default async function Home() {
@@ -109,8 +107,6 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
-      
       <ReactLenis root />
 
       {data && <Card data={data}/>}
@@ -185,8 +181,6 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-
-      <Footer />
     </>
   )
 }

@@ -1,8 +1,6 @@
 import Link from "next/link"
 import { prisma } from "@/lib/prisma";
 import CourseCard from "@/components/course-card";
-import Navbar from "@/components/navbar/nav";
-import Footer from "@/components/footer";
 
 export default async function LongCourses() {
     const longCourses = await prisma.courses.findMany({
@@ -50,9 +48,7 @@ export default async function LongCourses() {
     const displayCourses = longCourses.length > 0 ? longCourses : fallbackCourses
 
     return (
-        <>
-            <Navbar />
-            <div className="px-10 py-20">
+        <div className="px-10 pt-32 pb-20">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex items-start justify-between gap-4 mb-12">
                         <div>
@@ -82,7 +78,5 @@ export default async function LongCourses() {
                     </div>
                 </div>
             </div>
-            <Footer />
-        </>
     )
 }

@@ -2,9 +2,10 @@ import createLocalStore from 'react-local-storage-manager'
 import { z } from "zod"
 
 const CartItem = z.object({
-  id: z.number(),
+  id: z.string(),
   quantity: z.number(),
-  name: z.string()
+  name: z.string(),
+  price: z.number().optional()
 })
 
 type CartItem = z.infer<typeof CartItem>

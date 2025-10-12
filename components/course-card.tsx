@@ -16,9 +16,10 @@ type CourseCardProps = {
 
 export default function CourseCard({ data }: CourseCardProps) {
   const item = {
-    id: parseInt(data.id),
+    id: data.id,
     quantity: 1,
-    name: data.name
+    name: data.name,
+    price: data.price
   };
 
   const duration = data.type === "short" ? "6 weeks" : "6 months";
