@@ -15,8 +15,9 @@ const dataById: Record<string, Course> = {
     "204": { id: "204", name: "Customer Service", description: "Communication and service excellence fundamentals.", duration: "2 weeks" },
 }
 
-export default function ShortCoursePage({ params }: { params: { course: string } }) {
-    const course = dataById[params.course]
+export default async function ShortCoursePage({ params }: { params: Promise<{ course: string }> }) {
+    const resolvedParams = await params
+    const course = dataById[resolvedParams.course]
     if (!course) return notFound()
 
     return (
