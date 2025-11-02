@@ -11,8 +11,10 @@ export async function POST(request: NextRequest) {
   const courses = getCoursesByIds(ids).map(course => ({
     id: course.id,
     name: course.name,
+    description: course.description,
     price: course.price,
-    coverImage: course.coverImage
+    coverImage: course.coverImage,
+    type: course.type
   }))
 
   return NextResponse.json(courses)
