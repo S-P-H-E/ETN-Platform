@@ -7,33 +7,20 @@ import { IoIosArrowRoundForward, IoMdFlower } from "react-icons/io";
 import clsx from 'clsx'
 import { RiFlowerFill } from "react-icons/ri";
 import { FaHandshakeSimple, FaSuitcase } from "react-icons/fa6";
-import { prisma } from "@/lib/prisma";
-import Link from "next/link";
+import { getRandomCourse, getCoursesByType, getAllCourses } from "@/lib/data"
+import Link from "next/link"
 
 export default async function Home() {
-  const featuredCourse = await prisma.courses.findFirst({
-    where: {
-      featured: true
-    }
-  })
+  const allCourses = getAllCourses()
+  const featuredCourse = getRandomCourse()
+  
+  // Find which course was picked
+  const pickedIndex = featuredCourse ? allCourses.findIndex(c => c.id === featuredCourse.id) : -1
+  
 
-  const shortCourses = await prisma.courses.findMany({
-    where: {
-      type: "short"
-    },
-    take: 3
-  })
+  const shortCourses = getCoursesByType("short").slice(0, 3)
 
-  const longCourses = await prisma.courses.findMany({
-    where: {
-      type: "long"
-    },
-    take: 3
-  })
-
-  // Debug logging
-  console.log("Short courses:", shortCourses.length)
-  console.log("Long courses:", longCourses.length)
+  const longCourses = getCoursesByType("long").slice(0, 3)
 
   // Fallback data for testing if no courses exist
   const fallbackShortCourses = [
@@ -109,7 +96,7 @@ export default async function Home() {
     <>
       <ReactLenis root />
 
-      {data && <Card data={data}/>}
+      {data && <Card data={data} totalCourses={allCourses.length} pickedIndex={pickedIndex}/>}
       {/* Stats */}
       <div className="p-4 md:p-10 flex flex-col md:flex-row gap-8 md:gap-20 w-fit mx-auto">
         {stats.map((s, i) => (

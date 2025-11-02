@@ -1,5 +1,6 @@
 import createLocalStore from 'react-local-storage-manager'
 import { z } from "zod"
+import { toast } from "sonner"
 
 const CartItem = z.object({
   id: z.string(),
@@ -16,6 +17,25 @@ const store = createLocalStore('cart', (data) => CartItems.parse(data),[/* Defau
 // Functions
 const useCartItems = store.use
 const addItemToCart = (item: CartItem) => {
+  const items = store.get()
+  const index = items.findIndex(i => i.id === item.id)
+
+  if (index !== -1) {
+    // Check if adding would exceed max quantity
+    const nextQuantity = items[index].quantity + (item.quantity || 1)
+    if (nextQuantity > 10) {
+      toast.error("Maximum quantity of 10 reached.")
+      return
+    }
+  } else {
+    // Check if initial quantity exceeds max
+    const initialQuantity = item.quantity || 1
+    if (initialQuantity > 10) {
+      toast.error("Maximum quantity of 10 allowed.")
+      return
+    }
+  }
+
   store.set(items => {
     const index = items.findIndex(i => i.id === item.id)
 
@@ -34,6 +54,8 @@ const addItemToCart = (item: CartItem) => {
       return [...items, { ...item, quantity: initialQuantity }]
     }
   })
+
+  toast.success("Added to Cart.")
 }
 
 const removeItemFromCart = (itemId: CartItem['id']) => {

@@ -1,16 +1,12 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { prisma } from "@/lib/prisma"
+import { getCourseById } from "@/lib/data"
 import CourseActions from "@/components/course-actions"
 
 export default async function ShortCoursePage({ params }: { params: Promise<{ course: string }> }) {
     const resolvedParams = await params
     
-    const course = await prisma.courses.findUnique({
-        where: {
-            id: resolvedParams.course
-        }
-    })
+    const course = getCourseById(resolvedParams.course)
     
     if (!course) return notFound()
 
@@ -26,7 +22,10 @@ export default async function ShortCoursePage({ params }: { params: Promise<{ co
                             <p className="text-sm md:text-lg mt-2 opacity-80">{course.type === 'long' ? '6 months' : '6 weeks'}</p>
                         </div>
                     </div>
-                    <CourseActions courseId={course.id} courseName={course.name} coursePrice={course.price} />
+                    <div className="flex flex-col gap-3">
+                        <p className="text-2xl md:text-4xl font-bold text-[var(--background)]">R{course.price}</p>
+                        <CourseActions courseId={course.id} courseName={course.name} coursePrice={course.price} />
+                    </div>
                 </div>
                 <div className="absolute bg-gradient-to-t from-black to-transparent size-full"/>
                 <div className="absolute bg-gradient-to-b from-black/90 to-transparent w-full h-40"/>

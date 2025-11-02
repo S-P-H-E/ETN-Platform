@@ -1,13 +1,9 @@
 import Link from "next/link"
-import { prisma } from "@/lib/prisma";
-import CourseCard from "@/components/course-card";
+import { getCoursesByType } from "@/lib/data"
+import CourseCard from "@/components/course-card"
 
 export default async function LongCourses() {
-    const longCourses = await prisma.courses.findMany({
-        where: {
-            type: "long"
-        }
-    })
+    const longCourses = getCoursesByType("long")
 
     // Fallback data if no courses exist
     const fallbackCourses = [

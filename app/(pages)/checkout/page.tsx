@@ -1,10 +1,9 @@
 "use client"
-import { useState, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { useCartItems } from "@/lib/cart";
-import { prisma } from "@/lib/prisma";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
+import { useCartItems } from "@/lib/cart"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 interface Course {
   id: string;
@@ -146,7 +145,7 @@ function CheckoutContent() {
   }
 
   return (
-    <div className="min-h-screen bg-black pt-20 md:pt-32 pb-8 md:pb-12">
+    <div className="min-h-screen bg-black pt-20 md:pt-32 pb-8 md:pb-12" data-checkout-loaded="true">
       <div className="max-w-6xl mx-auto px-4 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12">
           {/* Order Summary */}

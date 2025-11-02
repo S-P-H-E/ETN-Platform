@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/nav";
 import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,7 +20,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <Navbar />
-        {children}
+          <Toaster position="top-center"/>
+          <main>{children}</main>
         <Footer />
       </body>
     </html>

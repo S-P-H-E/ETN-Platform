@@ -1,0 +1,68 @@
+{
+  "courses": [
+    {
+      "id": "2c5706e9-bc88-4c9b-b8dc-40d85b7f44ef",
+      "createdAt": "2025-10-12T13:15:14.573Z",
+      "name": "Landscaping",
+      "description": "To provide landscaping services for new and established gardens. Content includes indigenous and exotic plants, garden structures, aesthetics, and garden layout design.",
+      "coverImage": "https://images.unsplash.com/photo-1734079692160-fcbe4be6ab96?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740",
+      "price": 1500,
+      "type": "long"
+    },
+    {
+      "id": "c5f24bf7-0507-4a59-8572-bbd41e7787ab",
+      "createdAt": "2025-10-12T13:15:14.573Z",
+      "name": "First Aid",
+      "description": "To provide first aid awareness and basic life support. Content includes wounds and bleeding, burns and fractures, emergency scene management, CPR, and respiratory distress.",
+      "coverImage": "https://images.unsplash.com/photo-1617699755337-c79e46f7eb0e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740",
+      "price": 1500,
+      "type": "long"
+    },
+    {
+      "id": "daa6c210-27cc-4d6c-957f-dffdc9f3966c",
+      "createdAt": "2025-10-12T13:15:14.573Z",
+      "name": "Sewing",
+      "description": "To provide alterations and new garment tailoring services. Content includes types of stitches, threading a sewing machine, sewing buttons, zips, hems and seams, alterations, and designing garments.",
+      "coverImage": "https://images.unsplash.com/photo-1534126511673-b6899657816a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740",
+      "price": 1500,
+      "type": "long"
+    },
+    {
+      "id": "e054722e-c24d-44e6-a915-9dfac143ee61",
+      "createdAt": "2025-10-12T13:15:14.573Z",
+      "name": "Child Minding",
+      "description": "To provide basic child and baby care. Content includes care for babies (birth to one year), toddlers, and educational toys.",
+      "coverImage": "https://images.unsplash.com/photo-1587323655395-b1c77a12c89a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740",
+      "price": 750,
+      "type": "short"
+    },
+    {
+      "id": "e7c2f189-18e4-4b18-9595-d6c78ce6a093",
+      "createdAt": "2025-10-12T13:15:14.573Z",
+      "name": "Life Skills",
+      "description": "To provide skills to navigate basic life necessities. Content includes opening a bank account, basic labour law, literacy, and numeric literacy.",
+      "coverImage": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740",
+      "price": 1500,
+      "type": "long"
+    },
+    {
+      "id": "f1b7d490-7c30-44a8-acec-793cef6d536e",
+      "createdAt": "2025-10-12T13:15:14.573Z",
+      "name": "Garden Maintenance",
+      "description": "To provide basic knowledge of watering, pruning, and planting in a domestic garden. Content includes watering requirements, pruning, propagation, and planting techniques.",
+      "coverImage": "https://images.unsplash.com/photo-1759496607068-f2892afdaf23?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740",
+      "price": 750,
+      "type": "short"
+    },
+    {
+      "id": "fff4d56d-c7d4-408a-958c-615ed486c9d1",
+      "createdAt": "2025-10-12T13:15:14.573Z",
+      "name": "Cooking",
+      "description": "To prepare and cook nutritious family meals. Content includes nutrition basics, meal planning, and cooking tasty recipes.",
+      "coverImage": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740",
+      "price": 750,
+      "type": "short"
+    }
+  ]
+}
+

@@ -1,13 +1,15 @@
 "use client"
-import { useCartItems, removeItemFromCart, updateItemQuantity } from "@/lib/cart";
-import { useEffect, useState } from "react";
-import { FaCartShopping } from "react-icons/fa6";
-import { IoClose } from "react-icons/io5";
-import { FaPlus, FaMinus, FaTrash } from "react-icons/fa6";
-import clsx from "clsx";
-import Link from "next/link";
+import { useCartItems, removeItemFromCart, updateItemQuantity } from "@/lib/cart"
+import { useEffect, useState } from "react"
+import { FaCartShopping } from "react-icons/fa6"
+import { IoClose } from "react-icons/io5"
+import { FaPlus, FaMinus, FaTrash } from "react-icons/fa6"
+import clsx from "clsx"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
 
 export default function Cart() {
+    const router = useRouter()
     const [drop, setDrop] = useState(false)
     const [mounted, setMounted] = useState(false)
     const cartItems = useCartItems()
@@ -23,6 +25,40 @@ export default function Cart() {
 
     const handleRemoveItem = (itemId: string) => {
         removeItemFromCart(itemId)
+    }
+
+    const handleCheckout = () => {
+        const courseIds = cartItems.map(item => item.id).join(',')
+        toast.promise<{ loaded: boolean }>(
+            () => new Promise((resolve) => {
+                router.push(`/checkout?items=${courseIds}`)
+                
+                // Listen for checkout page to finish loading
+                const checkLoaded = () => {
+                    const interval = setInterval(() => {
+                        if (document.querySelector('[data-checkout-loaded="true"]')) {
+                            clearInterval(interval)
+                            resolve({ loaded: true })
+                        }
+                    }, 100)
+                    
+                    // Fallback: resolve after 2 seconds if page doesn't signal
+                    setTimeout(() => {
+                        clearInterval(interval)
+                        resolve({ loaded: true })
+                    }, 2000)
+                }
+                
+                // Wait a bit for navigation to start
+                setTimeout(checkLoaded, 100)
+            }),
+            {
+                loading: "Processing...",
+                success: () => "Checkout created.",
+                error: "Failed to load checkout.",
+            }
+        )
+        setDrop(false)
     }
 
     return (
@@ -108,12 +144,12 @@ export default function Cart() {
                                     </span>
                                 </div>
                                 {cartItems.length > 0 && (
-                                    <Link 
-                                        href={`/checkout?items=${cartItems.map(item => item.id).join(',')}`}
-                                        className="w-full bg-[var(--background)] text-[var(--foreground)] py-2 rounded-xl font-semibold text-center block hover:bg-gray-100 transition-colors"
+                                    <button 
+                                        onClick={handleCheckout}
+                                        className="w-full cursor-pointer bg-[var(--background)] text-[var(--foreground)] py-2 rounded-xl font-semibold text-center block hover:bg-gray-100 transition-colors"
                                     >
                                         Checkout
-                                    </Link>
+                                    </button>
                                 )}
                             </div>
                         </div>
