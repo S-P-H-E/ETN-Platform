@@ -21,7 +21,7 @@ function getCourses(): Course[] {
   const filePath = join(process.cwd(), 'db.json')
   const fileContents = readFileSync(filePath, 'utf8')
   const data = JSON.parse(fileContents)
-  coursesCache = data.courses
+  coursesCache = data.courses as Course[]
   return coursesCache
 }
 
