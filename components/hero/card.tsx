@@ -2,7 +2,6 @@
 import { addItemToCart } from "@/lib/cart"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
-import { useEffect } from "react"
 
 type Card = {
     data: {
@@ -27,13 +26,7 @@ export default function Card({ data, totalCourses, pickedIndex }: Card) {
         price: data.price
     }
 
-    useEffect(() => {
-        console.log("=== Hero Card Course Selection ===")
-        console.log("Total courses:", totalCourses || 0)
-        console.log("Course picked (index):", pickedIndex !== undefined ? pickedIndex + 1 : "N/A")
-        console.log("Course picked (name):", data.name)
-        console.log("Course JSON:", JSON.stringify(data, null, 2))
-    }, [data, totalCourses, pickedIndex])
+    // Removed debug console.logs for production
 
     const handleBuyNow = () => {
         toast.promise<{ loaded: boolean }>(

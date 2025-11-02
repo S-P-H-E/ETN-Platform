@@ -2,14 +2,9 @@
 import Image from "next/image"
 import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { removeItemFromCart, useCartItems } from "@/lib/cart";
-import { FaCartShopping } from "react-icons/fa6";
 import Cart from "./cart";
 
 export default function Navbar() {
-    
-    // removeItemFromCart(1)
-
     return (
         <div id="nav" className="px-4 md:px-20 pt-4 md:pt-10 flex items-center justify-between absolute w-full z-20">
             <Link href="/" className="flex-shrink-0">
