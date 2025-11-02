@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+**/node_modules/
+expo/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -16,6 +18,18 @@
 # next.js
 /.next/
 /out/
+
+# expo
+.expo/
+.expo-shared/
+dist/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
 
 # production
 /build
