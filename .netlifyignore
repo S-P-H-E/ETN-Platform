@@ -1,0 +1,10 @@
+# Ignore expo directory from Netlify deployments
+expo/
+expo/**
+
+# Already covered by .gitignore but being explicit
+node_modules/
+.next/
+.expo/
+dist/
+
