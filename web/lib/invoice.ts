@@ -30,7 +30,7 @@ export function generateInvoicePDF(data: InvoiceData) {
   doc.setFontSize(10)
   doc.setFont('helvetica', 'normal')
   doc.text('Johannesburg, South Africa', 20, 28)
-  doc.text('Email: info@empoweringthenation.co.za', 20, 34)
+  doc.text('Email: info@empoweringthenation.com', 20, 34)
   
   // Invoice header
   doc.setFontSize(16)

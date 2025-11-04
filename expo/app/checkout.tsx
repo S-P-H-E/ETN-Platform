@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useLocalSearchParams, router, Stack } from 'expo-router'
 import { useState, useEffect, useRef } from 'react'
 import { Ionicons } from '@expo/vector-icons'
@@ -18,6 +19,7 @@ export default function Checkout() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
   })
   const [loading, setLoading] = useState(true)
   const initializedRef = useRef(false)
@@ -98,10 +100,37 @@ export default function Checkout() {
   }
 
   const handleSubmitQuota = () => {
-    if (!formData.name || !formData.email) {
-      Alert.alert('Error', 'Please fill in your name and email')
+    if (!formData.name || !formData.email || !formData.phone) {
+      Alert.alert('Error', 'Please fill in your name, email and phone')
       return
     }
+
+    // Store invoice data for success page
+    const invoiceData = {
+      customerName: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      courses: selectedCoursesList.map(c => ({
+        name: c.name,
+        price: c.price,
+        type: c.type
+      })),
+      subtotal,
+      discount,
+      discountRate,
+      totalBeforeVAT,
+      vat,
+      total,
+      invoiceNumber: `INV-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      date: new Date().toLocaleDateString('en-ZA', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    }
+
+    // Store in AsyncStorage for success page
+    AsyncStorage.setItem('invoiceData', JSON.stringify(invoiceData))
 
     // Simulate submission
     setTimeout(() => {
@@ -156,6 +185,17 @@ export default function Checkout() {
                   placeholderTextColor="#a5a5a5"
                   keyboardType="email-address"
                   autoCapitalize="none"
+                />
+              </View>
+              <View style={styles.inputContainer}>
+                <Text style={styles.inputLabel}>Phone</Text>
+                <TextInput
+                  style={styles.input}
+                  value={formData.phone}
+                  onChangeText={(text) => setFormData(prev => ({ ...prev, phone: text }))}
+                  placeholder="+27 82 123 4567"
+                  placeholderTextColor="#a5a5a5"
+                  keyboardType="phone-pad"
                 />
               </View>
             </View>

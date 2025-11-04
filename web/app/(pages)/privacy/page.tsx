@@ -44,11 +44,11 @@ export default function PrivacyPolicy() {
           <div className="bg-[var(--foreground)] border border-[var(--border)] p-6 rounded-lg">
             <p className="font-semibold text-white">Empowering The Nation</p>
             <p>Johannesburg, South Africa</p>
-            <p>Email: info@empoweringthenation.co.za</p>
+            <p>Email: info@empoweringthenation.com</p>
           </div>
 
           <p className="text-sm mt-8 text-[var(--description)]">
-            Last updated: December 2024
+            Last updated: November 2025
           </p>
         </div>
       </div>

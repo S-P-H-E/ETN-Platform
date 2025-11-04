@@ -37,21 +37,29 @@ export default function AboutUs() {
             <Text style={styles.listItem}>• Professional development and career guidance</Text>
           </View>
 
-          <View style={styles.card}>
-            <Text style={styles.cardTitle}>Six-Month Learnerships</Text>
-            <Text style={styles.cardText}>Duration: 12 weeks</Text>
-            <Text style={styles.cardDescription}>
-              Comprehensive training programs designed for deep skill development and professional certification.
-            </Text>
+          <Text style={styles.sectionTitle}>Course Structure</Text>
+          <View style={styles.courseStructureGrid}>
+            <View style={styles.card}>
+              <Text style={styles.cardTitle}>Six-Month Learnerships</Text>
+              <Text style={styles.cardText}>Duration: 12 weeks</Text>
+              <Text style={styles.cardDescription}>
+                Comprehensive training programs designed for deep skill development and professional certification.
+              </Text>
+            </View>
+
+            <View style={styles.card}>
+              <Text style={styles.cardTitle}>Short Skills Training</Text>
+              <Text style={styles.cardText}>Duration: 6 weeks</Text>
+              <Text style={styles.cardDescription}>
+                Focused skill-building programs for quick implementation and immediate workplace application.
+              </Text>
+            </View>
           </View>
 
-          <View style={styles.card}>
-            <Text style={styles.cardTitle}>Short Skills Training</Text>
-            <Text style={styles.cardText}>Duration: 6 weeks</Text>
-            <Text style={styles.cardDescription}>
-              Focused skill-building programs for quick implementation and immediate workplace application.
-            </Text>
-          </View>
+          <Text style={styles.sectionTitle}>Why Choose Us</Text>
+          <Text style={styles.paragraph}>
+            Many employers actively seek our training services to upskill their employees, enabling them to offer more skilled services to their households. Our reputation for quality training and practical skill development makes us the preferred choice for both individual learners and employers.
+          </Text>
 
           <Text style={styles.sectionTitle}>Our Location</Text>
           <Text style={styles.paragraph}>
@@ -155,6 +163,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#fff',
     marginTop: 16,
+  },
+  courseStructureGrid: {
+    gap: 16,
+    marginBottom: 32,
   },
 })
 

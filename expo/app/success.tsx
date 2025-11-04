@@ -1,10 +1,34 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import { router, Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
+import { useState, useEffect } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { generateInvoicePDF, InvoiceData } from '../lib/invoice'
 
 export default function Success() {
+  const [invoiceData, setInvoiceData] = useState<InvoiceData | null>(null)
+  const [hasGenerated, setHasGenerated] = useState(false)
+
+  useEffect(() => {
+    const loadInvoiceData = async () => {
+      const stored = await AsyncStorage.getItem('invoiceData')
+      if (stored) {
+        const data = JSON.parse(stored) as InvoiceData
+        setInvoiceData(data)
+      }
+    }
+    loadInvoiceData()
+  }, [])
+
+  const handleGeneratePDF = async () => {
+    if (invoiceData) {
+      await generateInvoicePDF(invoiceData)
+      setHasGenerated(true)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ headerShown: false }} />
@@ -19,18 +43,29 @@ export default function Success() {
             <Text style={styles.description}>
               We've received your quota request and will get back to you shortly. Our team will review your request and contact you soon.
             </Text>
+            {invoiceData && (
+              <View style={styles.invoiceInfo}>
+                <Text style={styles.invoiceLabel}>Invoice Number: <Text style={styles.invoiceValue}>{invoiceData.invoiceNumber}</Text></Text>
+                <Text style={styles.invoiceLabel}>Total: <Text style={styles.invoiceValue}>R{invoiceData.total.toFixed(2)}</Text></Text>
+                <Text style={styles.invoiceLabel}>Date: <Text style={styles.invoiceValue}>{invoiceData.date}</Text></Text>
+              </View>
+            )}
             <View style={styles.actions}>
+              {invoiceData && (
+                <TouchableOpacity
+                  style={styles.pdfButton}
+                  onPress={handleGeneratePDF}
+                >
+                  <Text style={styles.pdfButtonText}>
+                    {hasGenerated ? "Download Invoice Again" : "Download Invoice PDF"}
+                  </Text>
+                </TouchableOpacity>
+              )}
               <TouchableOpacity
                 style={styles.primaryButton}
                 onPress={() => router.push('/' as any)}
               >
-                <Text style={styles.primaryButtonText}>Continue Learning</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.secondaryButton}
-                onPress={() => router.push('/long' as any)}
-              >
-                <Text style={styles.secondaryButtonText}>Explore More Courses</Text>
+                <Text style={styles.primaryButtonText}>Explore More Courses</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -107,6 +142,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   secondaryButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#fff',
+  },
+  invoiceInfo: {
+    backgroundColor: '#0a0a0a',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.35)',
+    borderRadius: 12,
+    padding: 16,
+    marginTop: 16,
+    marginBottom: 16,
+    width: '100%',
+  },
+  invoiceLabel: {
+    fontSize: 14,
+    color: '#a5a5a5',
+    marginBottom: 8,
+  },
+  invoiceValue: {
+    color: '#fff',
+    fontWeight: '600',
+  },
+  pdfButton: {
+    backgroundColor: '#2563eb',
+    paddingVertical: 16,
+    borderRadius: 20,
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  pdfButtonText: {
     fontSize: 16,
     fontWeight: '600',
     color: '#fff',

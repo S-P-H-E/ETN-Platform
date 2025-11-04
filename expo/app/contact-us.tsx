@@ -27,6 +27,7 @@ export default function ContactUs() {
             <Text style={styles.listItem}>• Entrepreneurship training for business development</Text>
           </View>
 
+          <Text style={styles.sectionTitle}>Course Pricing and Discounts</Text>
           <View style={styles.card}>
             <Text style={styles.cardTitle}>Multi-Course Discount Structure:</Text>
             <View style={styles.list}>
@@ -39,17 +40,22 @@ export default function ContactUs() {
 
           <Text style={styles.sectionTitle}>Contact Information</Text>
           <View style={styles.card}>
-            <Text style={styles.cardTitle}>Empowering The Nation</Text>
-            <Text style={styles.contactItem}>Johannesburg, South Africa</Text>
-            <TouchableOpacity onPress={() => Linking.openURL('mailto:info@empoweringthenation.co.za')}>
-              <Text style={styles.contactLink}>Email: info@empoweringthenation.co.za</Text>
-            </TouchableOpacity>
-            <Text style={styles.contactItem}>Phone: +27 (0) 11 XXX XXXX</Text>
-            
-            <Text style={[styles.cardTitle, { marginTop: 24 }]}>Business Hours</Text>
-            <Text style={styles.contactItem}>Monday - Friday: 8:00 AM - 5:00 PM</Text>
-            <Text style={styles.contactItem}>Saturday: 9:00 AM - 1:00 PM</Text>
-            <Text style={styles.contactItem}>Sunday: Closed</Text>
+            <View style={styles.contactGrid}>
+              <View>
+                <Text style={styles.cardTitle}>Empowering The Nation</Text>
+                <Text style={styles.contactItem}>Johannesburg, South Africa</Text>
+                <TouchableOpacity onPress={() => Linking.openURL('mailto:info@empoweringthenation.com')}>
+                  <Text style={styles.contactLink}>Email: info@empoweringthenation.com</Text>
+                </TouchableOpacity>
+                <Text style={styles.contactItem}>Phone: +27 (0) 81 255 4567</Text>
+              </View>
+              <View>
+                <Text style={styles.cardTitle}>Business Hours</Text>
+                <Text style={styles.contactItem}>Monday - Friday: 8:00 AM - 5:00 PM</Text>
+                <Text style={styles.contactItem}>Saturday: 9:00 AM - 1:00 PM</Text>
+                <Text style={styles.contactItem}>Sunday: Closed</Text>
+              </View>
+            </View>
           </View>
 
           <View style={styles.ctaCard}>
@@ -60,13 +66,13 @@ export default function ContactUs() {
             <View style={styles.ctaButtons}>
               <TouchableOpacity
                 style={styles.ctaButton}
-                onPress={() => Linking.openURL('mailto:info@empoweringthenation.co.za')}
+                onPress={() => Linking.openURL('mailto:info@empoweringthenation.com')}
               >
                 <Text style={styles.ctaButtonText}>Send Email</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.ctaButton}
-                onPress={() => Linking.openURL('tel:+2711XXXXXXXX')}
+                onPress={() => Linking.openURL('tel:+27812554567')}
               >
                 <Text style={styles.ctaButtonText}>Call Now</Text>
               </TouchableOpacity>
@@ -172,6 +178,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#000',
+  },
+  contactGrid: {
+    gap: 24,
   },
 })
 
