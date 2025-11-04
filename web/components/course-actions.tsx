@@ -56,7 +56,7 @@ export default function CourseActions({ courseId, courseName, coursePrice }: Cou
         onClick={handleBuyNow}
         className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-4 md:px-6 py-2 rounded-full font-semibold inline-block text-center text-sm md:text-base"
       >
-        Buy Now
+        Order Now
       </button>
       <button 
         onClick={() => addItemToCart(item)} 

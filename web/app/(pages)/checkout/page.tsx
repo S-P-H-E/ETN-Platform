@@ -25,7 +25,8 @@ function CheckoutContent() {
   const [feesCalculated, setFeesCalculated] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
-    email: ""
+    email: "",
+    phone: ""
   })
 
   useEffect(() => {
@@ -102,8 +103,8 @@ function CheckoutContent() {
   }
 
   const handleSubmitQuota = () => {
-    if (!formData.name || !formData.email) {
-      toast.error("Please fill in your name and email")
+    if (!formData.name || !formData.email || !formData.phone) {
+      toast.error("Please fill in your name, email and phone")
       return
     }
 
@@ -186,6 +187,18 @@ function CheckoutContent() {
                 required
                 className="w-full px-4 py-3 bg-[#0a0a0a] border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-[var(--description)]"
                 placeholder="your@email.com"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-[var(--background)]">Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 bg-[#0a0a0a] border border-[var(--border)] rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-[var(--description)]"
+                placeholder="+27 82 123 4567"
               />
             </div>
           </div>

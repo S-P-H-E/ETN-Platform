@@ -9,6 +9,7 @@ import { RiFlowerFill } from "react-icons/ri";
 import { FaHandshakeSimple, FaSuitcase } from "react-icons/fa6";
 import { getRandomCourse, getCoursesByType, getAllCourses } from "@/lib/data"
 import Link from "next/link"
+import AI from "@/components/ai";
 
 export default async function Home() {
   const allCourses = getAllCourses()
@@ -157,6 +158,8 @@ export default async function Home() {
           </div>
         </div>
       )}
+
+      <AI />
 
       {/* Certificate */}
       <div className="px-4 md:px-10">

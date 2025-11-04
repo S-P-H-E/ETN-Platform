@@ -40,7 +40,7 @@ export default function HeroCard({ data }: HeroCardProps) {
           <Text style={styles.description}>{data.description}</Text>
           <View style={styles.buttons}>
             <TouchableOpacity style={styles.buyNowButton} onPress={handleBuyNow}>
-              <Text style={styles.buyNowText}>Buy Now</Text>
+              <Text style={styles.buyNowText}>Order Now</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.addToCartButton}

@@ -66,7 +66,7 @@ export default function CourseDetail() {
                 <Text style={styles.price}>R{course.price}</Text>
                 <View style={styles.actions}>
                   <TouchableOpacity style={styles.buyNowButton} onPress={handleBuyNow}>
-                    <Text style={styles.buyNowText}>Buy Now</Text>
+                    <Text style={styles.buyNowText}>Order Now</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.addToCartButton}

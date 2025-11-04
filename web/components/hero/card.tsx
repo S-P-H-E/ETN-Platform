@@ -67,7 +67,7 @@ export default function Card({ data, totalCourses, pickedIndex }: Card) {
                     <h1 className="text-2xl md:text-5xl font-semibold leading-tight">{data.name}</h1>
                     <p className="text-sm md:text-xl max-w-3xl">{data.description}</p>
                     <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2 sm:space-y-0">
-                        <button onClick={handleBuyNow} className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-4 md:px-6 py-2 rounded-full font-semibold inline-block text-center text-sm md:text-base">Buy Now</button>
+                        <button onClick={handleBuyNow} className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-4 md:px-6 py-2 rounded-full font-semibold inline-block text-center text-sm md:text-base">Order Now</button>
                         <button onClick={() => addItemToCart(item)} className="bg-[var(--background)] cursor-pointer text-[var(--foreground)] px-4 md:px-6 py-2 rounded-full font-semibold text-sm md:text-base">Add to Cart</button>
                     </div>
                 </div>
