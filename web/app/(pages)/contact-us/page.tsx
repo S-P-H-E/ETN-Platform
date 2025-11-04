@@ -127,10 +127,10 @@ export default function ContactUs() {
             Contact us today to discuss your training needs, request a quote, or learn more about how our programs can benefit you or your employees. We're committed to empowering individuals and transforming communities through quality skills training.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="mailto:info@empoweringthenation.co.za" className="bg-white text-black px-6 py-3 rounded-lg hover:scale-105 transition-transform">
+            <a href="mailto:info@empoweringthenation.co.za" className="bg-white text-black px-6 py-3 rounded-lg hover:scale-105 transition-transform cursor-pointer">
               Send Email
             </a>
-            <a href="tel:+2711XXXXXXXX" className="bg-white text-black px-6 py-3 rounded-lg hover:scale-105 transition-transform">
+            <a href="tel:+2711XXXXXXXX" className="bg-white text-black px-6 py-3 rounded-lg hover:scale-105 transition-transform cursor-pointer">
               Call Now
             </a>
           </div>

@@ -127,7 +127,7 @@ export default async function Home() {
               ))}
             </div>
             <div className="text-center mt-6 md:mt-8">
-              <Link href="/short" className="inline-flex items-center gap-2 bg-[var(--foreground)] text-[var(--background)] px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:scale-105 transition-transform text-sm md:text-base">
+              <Link href="/short" className="inline-flex items-center gap-2 bg-[var(--foreground)] text-[var(--background)] px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:scale-105 transition-transform text-sm md:text-base cursor-pointer">
                 View All Short Courses
                 <IoIosArrowRoundForward />
               </Link>
@@ -150,7 +150,7 @@ export default async function Home() {
               ))}
             </div>
             <div className="text-center mt-6 md:mt-8">
-              <Link href="/long" className="inline-flex items-center gap-2 bg-[var(--foreground)] text-[var(--background)] px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:scale-105 transition-transform text-sm md:text-base">
+              <Link href="/long" className="inline-flex items-center gap-2 bg-[var(--foreground)] text-[var(--background)] px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:scale-105 transition-transform text-sm md:text-base cursor-pointer">
                 View All Long Courses
                 <IoIosArrowRoundForward />
               </Link>

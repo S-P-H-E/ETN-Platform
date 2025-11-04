@@ -16,16 +16,16 @@ export default function Footer() {
             <div className="p-6 md:p-10 bg-[var(--secondary)] rounded-2xl w-full md:w-fit">
                 <h1 className="text-xl md:text-3xl font-semibold mb-3">General</h1>
                 <div className="flex flex-col gap-2 md:gap-3">
-                    <Link href="/privacy" className="text-[var(--description)] hover:text-[var(--background)] transition-colors text-sm md:text-base">
+                    <Link href="/privacy" className="text-[var(--description)] hover:text-[var(--background)] transition-colors text-sm md:text-base cursor-pointer">
                         Privacy Policy
                     </Link>
-                    <Link href="/terms" className="text-[var(--description)] hover:text-[var(--background)] transition-colors text-sm md:text-base">
+                    <Link href="/terms" className="text-[var(--description)] hover:text-[var(--background)] transition-colors text-sm md:text-base cursor-pointer">
                         Terms of Service
                     </Link>
-                    <Link href="/contact-us" className="text-[var(--description)] hover:text-[var(--background)] transition-colors text-sm md:text-base">
+                    <Link href="/contact-us" className="text-[var(--description)] hover:text-[var(--background)] transition-colors text-sm md:text-base cursor-pointer">
                         Contact Us
                     </Link>
-                    <Link href="/about-us" className="text-[var(--description)] hover:text-[var(--background)] transition-colors text-sm md:text-base">
+                    <Link href="/about-us" className="text-[var(--description)] hover:text-[var(--background)] transition-colors text-sm md:text-base cursor-pointer">
                         About Us
                     </Link>
                 </div>

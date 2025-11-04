@@ -108,6 +108,37 @@ function CheckoutContent() {
       return
     }
 
+    if (!feesCalculated) {
+      toast.error("Please calculate fees first")
+      return
+    }
+
+    // Store invoice data for success page
+    const invoiceData = {
+      customerName: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      courses: selectedCoursesList.map(c => ({
+        name: c.name,
+        price: c.price,
+        type: c.type
+      })),
+      subtotal,
+      discount,
+      discountRate,
+      totalBeforeVAT,
+      vat,
+      total,
+      invoiceNumber: `INV-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      date: new Date().toLocaleDateString('en-ZA', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    }
+
+    localStorage.setItem('invoiceData', JSON.stringify(invoiceData))
+
     toast.promise<{ success: boolean }>(
       () => new Promise((resolve) => {
         setTimeout(() => {
@@ -271,15 +302,15 @@ function CheckoutContent() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={handleCalculateFees}
-            className="w-full sm:w-auto bg-[var(--background)] text-[var(--foreground)] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-lg hover:scale-105 transition-transform"
+            className="w-full sm:w-auto bg-[var(--background)] text-[var(--foreground)] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-lg hover:scale-105 transition-transform cursor-pointer"
           >
             Calculate Fee
           </button>
           <button
             onClick={handleSubmitQuota}
-            disabled={!feesCalculated}
+            disabled={!feesCalculated || selectedCoursesList.length === 0}
             className={`w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-lg transition-transform ${
-              feesCalculated
+              feesCalculated && selectedCoursesList.length > 0
                 ? 'bg-white text-black hover:scale-105 cursor-pointer'
                 : 'bg-gray-600 text-gray-400 cursor-not-allowed'
             }`}
