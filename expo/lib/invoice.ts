@@ -9,6 +9,7 @@ export interface InvoiceData {
   courses: Array<{
     name: string
     price: number
+    quantity: number
     type: 'long' | 'short'
   }>
   subtotal: number
@@ -143,17 +144,25 @@ export function generateInvoiceHTML(data: InvoiceData): string {
           <tr>
             <th>Item</th>
             <th>Type</th>
+            <th style="text-align: center;">Qty</th>
             <th style="text-align: right;">Price</th>
+            <th style="text-align: right;">Total</th>
           </tr>
         </thead>
         <tbody>
-          ${data.courses.map(course => `
+          ${data.courses.map(course => {
+            const quantity = course.quantity || 1
+            const lineTotal = course.price * quantity
+            return `
             <tr>
               <td>${course.name}</td>
               <td>${course.type === 'long' ? 'Long Course' : 'Short Course'}</td>
+              <td style="text-align: center;">${quantity}</td>
               <td style="text-align: right;">R${course.price.toFixed(2)}</td>
+              <td style="text-align: right;">R${lineTotal.toFixed(2)}</td>
             </tr>
-          `).join('')}
+          `
+          }).join('')}
         </tbody>
       </table>
 

@@ -15,6 +15,7 @@ export default function Checkout() {
   const cartItems = useCartItems()
   const [courses, setCourses] = useState<Course[]>([])
   const [selectedCourses, setSelectedCourses] = useState<Set<string>>(new Set())
+  const [quantities, setQuantities] = useState<Map<string, number>>(new Map())
   const [feesCalculated, setFeesCalculated] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -47,6 +48,13 @@ export default function Checkout() {
 
     if (selectedIds.length > 0) {
       setSelectedCourses(new Set(selectedIds))
+      // Initialize quantities from cart items, or default to 1
+      const initialQuantities = new Map<string, number>()
+      selectedIds.forEach(id => {
+        const cartItem = cartItems.find(item => item.id === id)
+        initialQuantities.set(id, cartItem?.quantity || 1)
+      })
+      setQuantities(initialQuantities)
     }
     setLoading(false)
   }, [params.items, cartItems])
@@ -65,11 +73,35 @@ export default function Checkout() {
         // Create new Set without this course
         const newSet = new Set(prev)
         newSet.delete(courseId)
+        // Remove quantity when unselected
+        setQuantities(prevQty => {
+          const newQty = new Map(prevQty)
+          newQty.delete(courseId)
+          return newQty
+        })
         return newSet
       } else {
         // Adding a new course - create new Set with this course
-        return new Set([...prev, courseId])
+        const newSet = new Set([...prev, courseId])
+        // Initialize quantity to 1 when selected
+        setQuantities(prevQty => {
+          const newQty = new Map(prevQty)
+          newQty.set(courseId, 1)
+          return newQty
+        })
+        return newSet
       }
+    })
+    setFeesCalculated(false)
+  }
+
+  const handleQuantityChange = (courseId: string, change: number) => {
+    setQuantities(prev => {
+      const newQty = new Map(prev)
+      const currentQty = newQty.get(courseId) || 1
+      const newQuantity = Math.min(10, Math.max(1, currentQty + change))
+      newQty.set(courseId, newQuantity)
+      return newQty
     })
     setFeesCalculated(false)
   }
@@ -82,7 +114,10 @@ export default function Checkout() {
   }
 
   const selectedCoursesList = courses.filter(c => selectedCourses.has(c.id))
-  const subtotal = selectedCoursesList.reduce((sum, course) => sum + course.price, 0)
+  const subtotal = selectedCoursesList.reduce((sum, course) => {
+    const quantity = quantities.get(course.id) || 1
+    return sum + (course.price * quantity)
+  }, 0)
   const courseCount = selectedCoursesList.length
   const discountRate = calculateDiscount(courseCount)
   const discount = subtotal * discountRate
@@ -113,6 +148,7 @@ export default function Checkout() {
       courses: selectedCoursesList.map(c => ({
         name: c.name,
         price: c.price,
+        quantity: quantities.get(c.id) || 1,
         type: c.type
       })),
       subtotal,
@@ -234,6 +270,36 @@ export default function Checkout() {
                       {course.description}
                     </Text>
                     <Text style={styles.coursePrice}>R{course.price}</Text>
+                    {selectedCourses.has(course.id) && (
+                      <View style={styles.quantityContainer}>
+                        <Text style={styles.quantityLabel}>Quantity:</Text>
+                        <View style={styles.quantityControls}>
+                          <TouchableOpacity
+                            onPress={() => handleQuantityChange(course.id, -1)}
+                            disabled={(quantities.get(course.id) || 1) <= 1}
+                            style={[
+                              styles.quantityButton,
+                              (quantities.get(course.id) || 1) <= 1 && styles.disabledButton
+                            ]}
+                          >
+                            <Ionicons name="remove" size={12} color="#fff" />
+                          </TouchableOpacity>
+                          <Text style={styles.quantityText}>
+                            {quantities.get(course.id) || 1}
+                          </Text>
+                          <TouchableOpacity
+                            onPress={() => handleQuantityChange(course.id, 1)}
+                            disabled={(quantities.get(course.id) || 1) >= 10}
+                            style={[
+                              styles.quantityButton,
+                              (quantities.get(course.id) || 1) >= 10 && styles.disabledButton
+                            ]}
+                          >
+                            <Ionicons name="add" size={12} color="#fff" />
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                    )}
                   </View>
                 </View>
               ))}
@@ -244,6 +310,20 @@ export default function Checkout() {
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Pricing Breakdown</Text>
               <View style={styles.pricingBreakdown}>
+                {/* Items summary */}
+                <View style={{ marginBottom: 8 }}>
+                  <Text style={[styles.pricingLabel, { marginBottom: 4 }]}>Items</Text>
+                  {selectedCoursesList.map(c => {
+                    const qty = quantities.get(c.id) || 1
+                    const lineTotal = c.price * qty
+                    return (
+                      <View key={c.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 2 }}>
+                        <Text style={{ color: '#fff', fontSize: 12 }}>{c.name} x {qty}</Text>
+                        <Text style={{ color: '#fff', fontSize: 12 }}>R{lineTotal.toFixed(2)}</Text>
+                      </View>
+                    )
+                  })}
+                </View>
                 <View style={styles.pricingRow}>
                   <Text style={styles.pricingLabel}>Subtotal</Text>
                   <Text style={styles.pricingValue}>R{subtotal.toFixed(2)}</Text>
@@ -416,6 +496,37 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     color: '#fff',
+    marginBottom: 8,
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 8,
+  },
+  quantityLabel: {
+    fontSize: 14,
+    color: '#a5a5a5',
+  },
+  quantityControls: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  quantityButton: {
+    padding: 4,
+  },
+  quantityText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#fff',
+    minWidth: 24,
+    textAlign: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.35)',
+    borderRadius: 4,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
   },
   pricingBreakdown: {
     gap: 12,

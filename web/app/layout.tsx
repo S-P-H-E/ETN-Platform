@@ -31,7 +31,8 @@ export const metadata: Metadata = {
     "vocational training",
     "empowerment",
     "education",
-    "learning platform"
+    "learning platform",
+    "empowering the nation"
   ],
   authors: [{ name: "Empowering The Nation" }],
   creator: "Empowering The Nation",

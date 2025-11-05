@@ -5,6 +5,7 @@ import { useCartItems } from "@/lib/cart"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { FaPlus, FaMinus } from "react-icons/fa6"
 
 interface Course {
   id: string
@@ -21,6 +22,7 @@ function CheckoutContent() {
   const cartItems = useCartItems()
   const [courses, setCourses] = useState<Course[]>([])
   const [selectedCourses, setSelectedCourses] = useState<Set<string>>(new Set())
+  const [quantities, setQuantities] = useState<Map<string, number>>(new Map())
   const [loading, setLoading] = useState(true)
   const [feesCalculated, setFeesCalculated] = useState(false)
   const [formData, setFormData] = useState({
@@ -54,6 +56,13 @@ function CheckoutContent() {
         // Pre-select courses from URL/cart
         if (selectedIds.length > 0) {
           setSelectedCourses(new Set(selectedIds))
+          // Initialize quantities from cart items, or default to 1
+          const initialQuantities = new Map<string, number>()
+          selectedIds.forEach(id => {
+            const cartItem = cartItems.find(item => item.id === id)
+            initialQuantities.set(id, cartItem?.quantity || 1)
+          })
+          setQuantities(initialQuantities)
         }
       } else {
         setCourses([])
@@ -69,10 +78,33 @@ function CheckoutContent() {
       const newSet = new Set(prev)
       if (newSet.has(courseId)) {
         newSet.delete(courseId)
+        // Remove quantity when unselected
+        setQuantities(prevQty => {
+          const newQty = new Map(prevQty)
+          newQty.delete(courseId)
+          return newQty
+        })
       } else {
         newSet.add(courseId)
+        // Initialize quantity to 1 when selected
+        setQuantities(prevQty => {
+          const newQty = new Map(prevQty)
+          newQty.set(courseId, 1)
+          return newQty
+        })
       }
       return newSet
+    })
+    setFeesCalculated(false)
+  }
+
+  const handleQuantityChange = (courseId: string, change: number) => {
+    setQuantities(prev => {
+      const newQty = new Map(prev)
+      const currentQty = newQty.get(courseId) || 1
+      const newQuantity = Math.min(10, Math.max(1, currentQty + change))
+      newQty.set(courseId, newQuantity)
+      return newQty
     })
     setFeesCalculated(false)
   }
@@ -85,7 +117,10 @@ function CheckoutContent() {
   }
 
   const selectedCoursesList = courses.filter(c => selectedCourses.has(c.id))
-  const subtotal = selectedCoursesList.reduce((sum, course) => sum + course.price, 0)
+  const subtotal = selectedCoursesList.reduce((sum, course) => {
+    const quantity = quantities.get(course.id) || 1
+    return sum + (course.price * quantity)
+  }, 0)
   const courseCount = selectedCoursesList.length
   const discountRate = calculateDiscount(courseCount)
   const discount = subtotal * discountRate
@@ -121,6 +156,7 @@ function CheckoutContent() {
       courses: selectedCoursesList.map(c => ({
         name: c.name,
         price: c.price,
+        quantity: quantities.get(c.id) || 1,
         type: c.type
       })),
       subtotal,
@@ -260,7 +296,29 @@ function CheckoutContent() {
                 <div className="flex-1">
                   <h3 className="font-semibold text-lg text-[var(--background)] mb-1">{course.name}</h3>
                   <p className="text-sm text-[var(--description)] mb-2 line-clamp-2">{course.description}</p>
-                  <p className="text-lg font-semibold text-[var(--background)]">R{course.price}</p>
+                  <p className="text-lg font-semibold text-[var(--background)] mb-2">R{course.price}</p>
+                  {selectedCourses.has(course.id) && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-[var(--description)] mr-2">Quantity:</span>
+                      <button
+                        onClick={() => handleQuantityChange(course.id, -1)}
+                        className="p-1 rounded transition-transform cursor-pointer hover:scale-110 disabled:opacity-50 disabled:hover:scale-100"
+                        disabled={(quantities.get(course.id) || 1) <= 1}
+                      >
+                        <FaMinus className="text-xs text-[var(--background)]" />
+                      </button>
+                      <span className="px-2 py-1 border border-[var(--border)] rounded text-sm font-medium min-w-[2rem] text-center text-[var(--background)]">
+                        {quantities.get(course.id) || 1}
+                      </span>
+                      <button
+                        onClick={() => handleQuantityChange(course.id, 1)}
+                        className="p-1 rounded transition-transform cursor-pointer hover:scale-110 disabled:opacity-50 disabled:hover:scale-100"
+                        disabled={(quantities.get(course.id) || 1) >= 10}
+                      >
+                        <FaPlus className="text-xs text-[var(--background)]" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -272,6 +330,22 @@ function CheckoutContent() {
           <div className="bg-[var(--foreground)] rounded-lg border border-[var(--border)] p-4 md:p-6 mb-6">
             <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-[var(--background)]">Pricing Breakdown</h2>
             <div className="space-y-3">
+              {/* Items summary */}
+              <div className="text-[var(--background)]">
+                <p className="font-medium mb-1">Items</p>
+                <div className="space-y-1">
+                  {selectedCoursesList.map(c => {
+                    const qty = quantities.get(c.id) || 1
+                    const lineTotal = c.price * qty
+                    return (
+                      <div key={c.id} className="flex items-center justify-between text-sm">
+                        <span>{c.name} x {qty}</span>
+                        <span>R{lineTotal.toFixed(2)}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
               <div className="flex justify-between text-[var(--background)]">
                 <span>Subtotal</span>
                 <span>R{subtotal.toFixed(2)}</span>

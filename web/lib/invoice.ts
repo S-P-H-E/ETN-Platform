@@ -7,6 +7,7 @@ export interface InvoiceData {
   courses: Array<{
     name: string
     price: number
+    quantity: number
     type: 'long' | 'short'
   }>
   subtotal: number
@@ -62,8 +63,10 @@ export function generateInvoicePDF(data: InvoiceData) {
   doc.setFontSize(10)
   doc.setFont('helvetica', 'bold')
   doc.text('Item', 20, yPos)
-  doc.text('Type', 80, yPos)
-  doc.text('Price', 170, yPos)
+  doc.text('Type', 85, yPos)
+  doc.text('Qty', 125, yPos)
+  doc.text('Price', 145, yPos)
+  doc.text('Total', 170, yPos)
   
   // Draw line
   yPos += 3
@@ -73,9 +76,15 @@ export function generateInvoicePDF(data: InvoiceData) {
   yPos += 8
   doc.setFont('helvetica', 'normal')
   data.courses.forEach((course) => {
-    doc.text(course.name, 20, yPos)
-    doc.text(course.type === 'long' ? 'Long Course' : 'Short Course', 80, yPos)
-    doc.text(`R${course.price.toFixed(2)}`, 170, yPos)
+    const quantity = course.quantity || 1
+    const lineTotal = course.price * quantity
+    // Truncate course name if too long
+    const courseName = course.name.length > 30 ? course.name.substring(0, 27) + '...' : course.name
+    doc.text(courseName, 20, yPos)
+    doc.text(course.type === 'long' ? 'Long' : 'Short', 85, yPos)
+    doc.text(quantity.toString(), 125, yPos)
+    doc.text(`R${course.price.toFixed(2)}`, 145, yPos)
+    doc.text(`R${lineTotal.toFixed(2)}`, 170, yPos)
     yPos += 7
   })
   
