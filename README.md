@@ -276,4 +276,9 @@ first commit
    Unknown author (n.d.) *Person cooking in kitchen*. Unsplash. Available at: [https://images.unsplash.com/photo-1556911220-e15b29be8c8f](https://images.unsplash.com/photo-1556911220-e15b29be8c8f) (Accessed: 12 October 2025).
 
 ---
-*Note:* If the `empoweringthenation.com` domain doesn't work, try `empoweringthenation1.netlify.app`.
+*Note The Following:* 
+- If the `empoweringthenation.com` domain doesn't work, try `empoweringthenation1.netlify.app`.
+- For the `web` project, the AI feature will not work locally unless you include 
+a `.env` file in the root of the `web` project and include a `GOOGLE GEMINI API KEY`. 
+Name your gemini enviroment variable `NEXT_PUBLIC_AI_API_KEY=""` and include the API key in between
+the inverted commas. 
