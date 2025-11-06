@@ -17,8 +17,6 @@ npm run dev
 
 ### Changelog
 
-166eb817c1110ad264fe43f72e2a5612504f4484 
-
 Update README and enhance logging in Home component
 - Expanded the README.md to include instructions for running both the Expo and Next.js applications.
 - Added console logs in the Home component to track the selected course index and the lists of short and long courses for better debugging and visibility during development.
