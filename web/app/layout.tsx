@@ -15,7 +15,12 @@ export const metadata: Metadata = {
     default: "Empowering The Nation - Professional Courses & Skill Development",
     template: "%s | Empowering The Nation"
   },
-  description: "Transform your career with our comprehensive online courses. Learn gardening, first aid, sewing, cooking, child care, and life skills. Professional certification programs for career advancement and personal growth. Join thousands of successful graduates.",
+  description: `
+      Transform your career with our comprehensive online courses. Learn gardening, 
+      first aid, sewing, cooking, child care, and life skills. Professional 
+      certification programs for career advancement and personal growth. Join 
+      thousands of successful graduates.
+  `,
   keywords: [
     "online courses",
     "professional training",
