@@ -11,7 +11,7 @@ This is a project for the WIL module at Varisty College, it consists of a:
 git clone https://github.com/S-P-H-E/ETN-Platform.git .
 ```
 ```
-# 👆 Make sure you include the period at the end of the line (.) so that github doesn't create another ETN-Platform folder.
+# 👆 Make sure you include the period (.) at the end of the line so that github doesn't create another ETN-Platform folder.
 ```
 
 ### To run the Expo app
