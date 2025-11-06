@@ -275,4 +275,5 @@ first commit
 7. **Cooking**
    Unknown author (n.d.) *Person cooking in kitchen*. Unsplash. Available at: [https://images.unsplash.com/photo-1556911220-e15b29be8c8f](https://images.unsplash.com/photo-1556911220-e15b29be8c8f) (Accessed: 12 October 2025).
 
+---
 *Note:* If the `empoweringthenation.com` domain doesn't work, try `empoweringthenation1.netlify.app`.
