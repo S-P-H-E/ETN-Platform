@@ -17,11 +17,13 @@ export default async function Home() {
   
   // Find which course was picked
   const pickedIndex = featuredCourse ? allCourses.findIndex(c => c.id === featuredCourse.id) : -1
-  
+  console.log("pickedIndex:", pickedIndex);
 
   const shortCourses = getCoursesByType("short").slice(0, 3)
+  console.log("shortCourses:", shortCourses);
 
   const longCourses = getCoursesByType("long").slice(0, 3)
+  console.log("longCourses:", longCourses);
 
   // Fallback data for testing if no courses exist
   const fallbackShortCourses = [
