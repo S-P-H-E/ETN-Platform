@@ -1,5 +1,5 @@
 # Empowering The Nation
-This is a project for the WIL module at Varisty College, it consists of a:
+This is a project for the WIL module at Varisty College, it is a monorepo consisting of a:
 - Mobile App (built using the Expo/React Native framework)
 - Website (built using the NextJS/React framework)
 
@@ -274,3 +274,5 @@ first commit
 
 7. **Cooking**
    Unknown author (n.d.) *Person cooking in kitchen*. Unsplash. Available at: [https://images.unsplash.com/photo-1556911220-e15b29be8c8f](https://images.unsplash.com/photo-1556911220-e15b29be8c8f) (Accessed: 12 October 2025).
+
+*Note:* If the `empoweringthenation.com` domain doesn't work, try `empoweringthenation1.netlify.app`.
