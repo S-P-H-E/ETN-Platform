@@ -3,7 +3,7 @@ This is a project for the WIL module at Varisty College, it consists of a:
 - Mobile App (built using the Expo/React Native framework)
 - Website (built using the NextJS/React framework)
 
-## To clone the respository locally
+### To clone the respository locally
 1. Create a folder called `ETN-Platform`.
 2. Make sure to `cd ETN-Platform` on the terminal, if you aren't already in the `ETN-Platform` folder.
 3. Clone:
